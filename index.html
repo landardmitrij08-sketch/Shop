@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Яркий Магазин</title>
+<link rel="stylesheet" href="style.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#ff6f61">
+</head>
+<body>
+
+<header>
+    <h1>Яркий Магазин</h1>
+    <nav>
+        <a href="#products">Товары</a>
+        <a href="#order">Заказ</a>
+        <a href="#reviews">Отзывы</a>
+    </nav>
+</header>
+
+<div class="container" id="products">
+    <h2>Наши товары</h2>
+    <div class="filters">
+        <button class="filter-btn active" onclick="filterProducts('all')">Все</button>
+        <button class="filter-btn" onclick="filterProducts('electronics')">Электроника</button>
+        <button class="filter-btn" onclick="filterProducts('clothes')">Одежда</button>
+        <button class="filter-btn" onclick="filterProducts('books')">Книги</button>
+        <input type="text" id="search" placeholder="Поиск..." oninput="searchProducts()">
+    </div>
+    <div class="products" id="product-list"></div>
+</div>
+
+<div id="cart">
+    <h2>Корзина <span id="cart-count">(0)</span></h2>
+    <div id="cart-items"></div>
+    <p id="total">Итого: 0₽</p>
+</div>
+
+<div class="container" id="order">
+    <h2>Оформление заказа</h2>
+    <form onsubmit="submitOrder(event)">
+        <input type="text" placeholder="Ваше имя" required>
+        <input type="email" placeholder="Email" required>
+        <input type="text" placeholder="Телефон" required>
+        <textarea placeholder="Адрес" required></textarea>
+        <button type="submit">Отправить заказ</button>
+    </form>
+</div>
+
+<div class="container" id="reviews">
+    <h2>Отзывы клиентов</h2>
+    <p>“Очень крутой магазин!” – Анна</p>
+    <p>“Быстрая доставка и отличное качество.” – Игорь</p>
+</div>
+
+<script src="script.js"></script>
+<script>
+if('serviceWorker' in navigator){
+    navigator.serviceWorker.register('./service-worker.js')
+    .then(() => console.log('Service Worker зарегистрирован'))
+    .catch(err => console.log('Ошибка регистрации SW:', err));
+}
+</script>
+
+</body>
+</html>
